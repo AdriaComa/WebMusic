@@ -1,5 +1,6 @@
 import { AstMemoryEfficientTransformer } from "@angular/compiler";
 import { Injectable } from "@angular/core";
+import { DataServices } from '../data.services';
 
 @Injectable()
 export class CancionesService {
@@ -71,7 +72,7 @@ export class CancionesService {
   ];
 
 
-  constructor() {
+  constructor(private dataServices: DataServices) {
     console.log ("Servicio listo para usar");
   }
 

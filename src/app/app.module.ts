@@ -24,6 +24,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FiltroCancionesPipe } from './pipe/filtro.pipe';
 import { CommonModule } from '@angular/common';
 import {FormControl, Validators} from '@angular/forms';
+//import { AngularFireModule } from '@angular/fire';
+//import { AngularFireStore } from '@angular/fire/firestore';
 
 
 
@@ -39,6 +41,10 @@ import { APP_ROUTING } from './app.routes';
 import { TextFilterComponent } from './filtro-canciones/filtro-canciones.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetalleCancionFormComponent } from './detalleCancion-form/detalleCancion-form.component';
+import { DataServices } from './data.services';
+import { HttpClientModule } from '@angular/common/http';
+import { initializeApp } from 'firebase/app';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -73,11 +79,14 @@ import { DetalleCancionFormComponent } from './detalleCancion-form/detalleCancio
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    //AngularFireModule.initializeApp(environment.firebase),
+    //AngularFireStore,
     APP_ROUTING
 
   ],
   exports: [MatSliderModule, MatCardModule],
-  providers: [
+  providers: [//DataServices,
     CancionesService,
     ServicioReproducirCancion
   ],
