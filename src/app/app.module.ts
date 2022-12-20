@@ -24,9 +24,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FiltroCancionesPipe } from './pipe/filtro.pipe';
 import { CommonModule } from '@angular/common';
 import {FormControl, Validators} from '@angular/forms';
-//import { AngularFireModule } from '@angular/fire';
-//import { AngularFireStore } from '@angular/fire/firestore';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 
@@ -80,8 +81,9 @@ import { environment } from '../environments/environment';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    //AngularFireModule.initializeApp(environment.firebase),
-    //AngularFireStore,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
     APP_ROUTING
 
   ],

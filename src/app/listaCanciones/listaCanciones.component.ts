@@ -3,10 +3,12 @@ import { CancionesService, Cancion } from '../servicios/canciones.service';
 import { ServicioVerDetalleService } from "../servicio-ver-detalle.service";
 import { ServicioReproducirCancion } from '../servicios/servicio-reproducir-cancion.service';
 import { FiltrosServicioService } from '../filtros-servicio.service';
-import {MatCardModule} from '@angular/material/card';
-import {MatListModule} from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Pipe, PipeTransform } from "@angular/core";
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 
 
@@ -22,13 +24,17 @@ export class CancionComponent implements OnInit {
   canciones: Cancion[] = [];
   cancion: Cancion | undefined;
   value = 'filtroCanciones';
+  public items: Observable<any[]>;
 
   filtroCanciones = '';
 
-  constructor(private _cancionesService: CancionesService,
+  constructor(firestore: AngularFirestore,
+    private _cancionesService: CancionesService,
     private filtrosServicio: FiltrosServicioService,
     private servicioDetalle: ServicioVerDetalleService,
-    private servicioReproducirCancion: ServicioReproducirCancion) { }
+    private servicioReproducirCancion: ServicioReproducirCancion) {
+      this.items = firestore.collection('canciones').valueChanges();
+    }
 
   ngOnInit() {
 
@@ -56,7 +62,7 @@ export class CancionComponent implements OnInit {
     if (busqueda == "") {
       this.canciones = this._cancionesService.getCanciones();
     } else {
-      this.canciones = this._cancionesService.getCanciones().filter(cancion => cancion.titulo.toLowerCase()  == busqueda.toLowerCase() );
+      this.canciones = this._cancionesService.getCanciones().filter(cancion => cancion.titulo.toLowerCase() == busqueda.toLowerCase());
     }
   }
 
