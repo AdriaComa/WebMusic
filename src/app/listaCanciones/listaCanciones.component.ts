@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Pipe, PipeTransform } from "@angular/core";
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
 
@@ -19,24 +19,60 @@ import { Observable } from 'rxjs';
   templateUrl: './listaCanciones.component.html',
   styleUrls: ['./listaCanciones.component.css'],
 })
+
+
 export class CancionComponent implements OnInit {
 
   canciones: Cancion[] = [];
   cancion: Cancion | undefined;
   value = 'filtroCanciones';
+
+
+  private itemsCollection: AngularFirestoreCollection<any>;
   public items: Observable<any[]>;
 
   filtroCanciones = '';
 
   constructor(firestore: AngularFirestore,
+    private afs: AngularFirestore,
     private _cancionesService: CancionesService,
     private filtrosServicio: FiltrosServicioService,
     private servicioDetalle: ServicioVerDetalleService,
     private servicioReproducirCancion: ServicioReproducirCancion) {
-      this.items = firestore.collection('canciones').valueChanges();
-    }
+    this.itemsCollection = afs.collection<any>('canciones');
+    this.items = this.itemsCollection.valueChanges({ idField: 'customID' });
+    //this.items = firestore.collection('canciones').valueChanges();
+
+
+  }
+
+
+
+  addItem(Titulo: string) {
+    // Persist a document id
+    const id = this.afs.createId();
+    const cancion: any = { id, Titulo };
+    this.itemsCollection.doc(id).set(cancion);
+    console.log("ADD ITEMS: ")
+    console.log(this.items);
+    console.log("ADD ITEMS COLLECTION: ")
+    console.log(this.itemsCollection.valueChanges());
+  }
+
+  borrarCancion(cancion_id: string) {
+    console.log("BORRAR: ", cancion_id)
+    const db = this.afs.firestore
+    var jobskill_query = db.collection('canciones').where('id','==', cancion_id);
+    jobskill_query.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        doc.ref.delete();
+      });
+    });
+  }
+
 
   ngOnInit() {
+
 
     this.canciones = this._cancionesService.getCanciones();
 
