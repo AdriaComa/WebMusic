@@ -1,11 +1,11 @@
 
 
 <form class="form" [formGroup]="form" (ngSubmit)="save($event)">
-  <h3>Añade tu canción:</h3>
+  <h2>Añade tu canción:</h2>
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Artista</mat-label>
-      <input formControlName="titulo" matInput placeholder="" value="">
+      <input formControlName="artista" matInput placeholder="" value="">
       <mat-icon matSuffix>face</mat-icon>
     </mat-form-field>
   </p>

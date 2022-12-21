@@ -1,23 +1,3 @@
-<!-- <mat-card class="card" *ngFor=" let cancion of canciones | filtro:filtroCanciones" style="width: 30%;">
-  <mat-card-header>
-    <mat-card-title>{{ cancion.artista }}</mat-card-title>
-    <mat-card-subtitle>{{ cancion.titulo }}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image [src]="cancion.img" style=" border: 5px solid #39ABA2; border-radius: 50%;" srcset="" width = "200" height="300" alt="Foto">
-  <mat-card-content>
-    <p>
-      {{ cancion.description }}
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button style="color: #39ABA2;" (click)="verDetalle(cancion.id)"><span>Detalles </span></button>
-    <button mat-raised-button style="color: #39ABA2;" (click)="reproducirCancion(cancion.id)"><span>Reproducir </span></button>
-  </mat-card-actions>
-</mat-card> -->
-
-<!-- <h3 class="h3">Busca tu canción o artista favorito:</h3>
-<input matInput type="text" class="form-control" name="filtroCanciones" placeholder="..." [(ngModel)]="filtroCanciones"> -->
-
 <mat-form-field class="filtro">
   <mat-label>Busca tu canción o artista favorito:</mat-label>
   <input matInput type="text" class="form-control" name="filtroCanciones" placeholder="..."
@@ -28,23 +8,6 @@
 </mat-form-field>
 
 <mat-nav-list class="text-left">
-  <!-- <mat-list-item *ngFor=" let cancion of canciones | filtro:filtroCanciones" (click)="verDetalle(cancion.id)">
-    <div matLine style="margin-left:70px"><img matLine [src]="cancion.img"
-        style=" border: 2px solid #39ABA2; border-radius: 50%;" alt="" width="70px" height="70px"></div>
-    <div matLine style="margin-left:70px" id="title">{{cancion.titulo}}<span><button mat-raised-button
-          style="border: 2px solid #39ABA2 !important; border-radius: 5% !important;  color: #39ABA2; float:right;"
-          (click)="reproducirCancion(cancion.id)"><span>Reproducir </span></button></span></div>
-    <div matLine style="margin-left:70px" id="artist">{{cancion.artista}}</div>
-    <div matLine style="margin-left:70px" id="artist">
-    </div>
-
-    <ul>
-      <li class="text" *ngFor="let item of items | async">
-        {{item.Titulo}}
-      </li>
-    </ul>
-
-  </mat-list-item> -->
   <mat-list-item *ngFor=" let item of items | async filtro:filtroCanciones" (click)="verDetalle(item.id)">
     <div matLine style="margin-left:70px"><img matLine [src]="item.img"
         style=" border: 2px solid #39ABA2; border-radius: 50%;" alt="" width="70px" height="70px"></div>
@@ -58,6 +21,7 @@
     <div matLine style="margin-left:70px" id="artist">{{item.Artista}}</div>
     <div matLine style="margin-left:70px" id="artist">
     </div>
+
   </mat-list-item>
 
 </mat-nav-list>

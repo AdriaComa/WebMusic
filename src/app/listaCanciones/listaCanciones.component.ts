@@ -47,24 +47,12 @@ export class CancionComponent implements OnInit {
   }
 
 
-
-  addItem(Titulo: string) {
-    // Persist a document id
-    const id = this.afs.createId();
-    const cancion: any = { id, Titulo };
-    this.itemsCollection.doc(id).set(cancion);
-    console.log("ADD ITEMS: ")
-    console.log(this.items);
-    console.log("ADD ITEMS COLLECTION: ")
-    console.log(this.itemsCollection.valueChanges());
-  }
-
-  borrarCancion(cancion_id: string) {
+ borrarCancion(cancion_id: string) {
     console.log("BORRAR: ", cancion_id)
     const db = this.afs.firestore
-    var jobskill_query = db.collection('canciones').where('id','==', cancion_id);
-    jobskill_query.get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
+    var jobskill_query = db.collection('canciones').where('id', '==', cancion_id);
+    jobskill_query.get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
         doc.ref.delete();
       });
     });
