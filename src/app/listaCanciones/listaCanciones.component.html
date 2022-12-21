@@ -48,9 +48,13 @@
   <mat-list-item *ngFor=" let item of items | async filtro:filtroCanciones" (click)="verDetalle(item.id)">
     <div matLine style="margin-left:70px"><img matLine [src]="item.img"
         style=" border: 2px solid #39ABA2; border-radius: 50%;" alt="" width="70px" height="70px"></div>
-    <div matLine style="margin-left:70px" id="title">{{item.Titulo}}<span><button mat-raised-button
-          style="border: 2px solid #39ABA2 !important; border-radius: 5% !important;  color: #39ABA2; float:right;"
-          (click)="reproducirCancion(item.id)"><span>Reproducir </span></button></span></div>
+    <div matLine style="margin-left:70px" id="title">{{item.Titulo}}</div>
+    <button mat-raised-button
+        style="border: 2px solid #39ABA2 !important; border-radius: 5% !important;margin-right: 3%;  color: #39ABA2; float: right;"
+        (click)="reproducirCancion(item.id)"><span>Reproducir </span></button>
+    <button mat-raised-button
+        style="border: 2px solid #ab3939 !important; border-radius: 5% !important;  color: #ab3939; float:right;"
+        (click)="reproducirCancion(item.id)"><span>Borrar </span></button>
     <div matLine style="margin-left:70px" id="artist">{{item.Artista}}</div>
     <div matLine style="margin-left:70px" id="artist">
     </div>

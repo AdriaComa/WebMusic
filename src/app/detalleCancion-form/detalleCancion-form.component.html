@@ -1,27 +1,47 @@
-<form [formGroup]="form" (ngSubmit)="save($event)">
+
+
+<form class="form" [formGroup]="form" (ngSubmit)="save($event)">
+  <h3>Añade tu canción:</h3>
   <p>
-    Artista: <br/>
-    <input type="text" formControlName="artista">
+    <mat-form-field appearance="fill">
+      <mat-label>Artista</mat-label>
+      <input formControlName="titulo" matInput placeholder="" value="">
+      <mat-icon matSuffix>face</mat-icon>
+    </mat-form-field>
   </p>
   <p>
-    Titulo: <br/>
-    <input type="text" formControlName="titulo">
+    <mat-form-field appearance="fill">
+      <mat-label>Canción</mat-label>
+      <input formControlName="titulo" matInput placeholder="" value="">
+      <mat-icon matSuffix>book</mat-icon>
+    </mat-form-field>
   </p>
   <p>
-    Album: <br/>
-    <input type="text" formControlName="album">
+    <mat-form-field appearance="fill">
+      <mat-label>Álbum</mat-label>
+      <input formControlName="album" matInput placeholder="" value="">
+      <mat-icon matSuffix>album</mat-icon>
+    </mat-form-field>
+
   </p>
   <p>
-    Fecha: <br/>
-    <input type="number" formControlName="fecha">
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha</mat-label>
+      <input formControlName="fecha" matInput placeholder="" value="">
+      <mat-icon matSuffix>today</mat-icon>
+    </mat-form-field>
   </p>
 
   <p>
-    Estilo: <br/>
-    <input type="radio" name="estilo" formControlName="estilo" value="pop"> Pop<br>
-    <input type="radio" name="estilo" formControlName="estilo" value="electronica"> Electrónica<br>
-    <input type="radio" name="estilo" formControlName="estilo" value="alternativa"> Alternativa
+    <mat-label>Estilo:</mat-label><br><br>
+    <mat-radio-group formControlName="estilo" aria-label="Select an option">
+      <mat-radio-button value="1">Pop</mat-radio-button><br>
+      <mat-radio-button value="2">Electrónica</mat-radio-button><br>
+      <mat-radio-button value="3">Alternativa</mat-radio-button><br>
+    </mat-radio-group>
+
   </p>
 
   <button mat-button type="submit" [disabled]="form.invalid">Guardar</button>
 </form>
+

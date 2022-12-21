@@ -19,6 +19,7 @@ export class detalleCancionComponent {
   canciones:Cancion[] = [];
   cancion: Cancion | undefined;
 
+
   artista = new FormControl('', [Validators.required]);
   titulo = new FormControl('', [Validators.required]);
   album = new FormControl('', [Validators.required]);

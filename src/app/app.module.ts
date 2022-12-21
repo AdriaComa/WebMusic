@@ -24,6 +24,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FiltroCancionesPipe } from './pipe/filtro.pipe';
 import { CommonModule } from '@angular/common';
 import {FormControl, Validators} from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
@@ -76,6 +77,7 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     MatCardModule,
     MatProgressBarModule,
+    MatRadioModule,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
