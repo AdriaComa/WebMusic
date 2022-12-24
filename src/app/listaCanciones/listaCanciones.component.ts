@@ -82,6 +82,14 @@ export class CancionComponent implements OnInit {
 
   }
 
+  // FILTRO CON LA BBDD DE FIREBASE
+  public getCancionesFiltradasEstilo(estilo: string) {
+    const db = this.afs.collection<any>('canciones', ref => ref.where('Estilo', '==', estilo));
+    this.items = db.valueChanges();
+  }
+
+
+
   public getCancionesFiltradasTexto(busqueda: string) {
     if (busqueda == "") {
       this.canciones = this._cancionesService.getCanciones();
@@ -98,36 +106,19 @@ export class CancionComponent implements OnInit {
     }
   }
 
-  public getCancionesFiltradasEstilo(estilo: string) {
 
-    console.log("ENTRA AQUI")
+  verDetalle(id: string) {
+    //this.cancion = this.canciones.find(cancion => cancion.id === id);
+    const db = this.afs.collection<any>('canciones', ref => ref.where('id', '==', id).limit(1));
+    var cancionesQuery = db.valueChanges();
+    var cancionFiltrada;
 
-    switch (estilo) {
-      case "Electrónica":
-        this.canciones = this._cancionesService.getCanciones().filter(cancion => cancion.estilo == estilo);
-        break;
-      case "Pop":
-        this.canciones = this._cancionesService.getCanciones().filter(cancion => cancion.estilo == estilo);
-        break;
-      case "Alternativa":
-        this.canciones = this._cancionesService.getCanciones().filter(cancion => cancion.estilo == estilo);
-        break;
-      case "Todas":
-        this.canciones = this._cancionesService.getCanciones();
-        break;
-      default:
-        this.canciones = [];
-        break;
-    }
-  }
+    cancionesQuery.forEach(item => {
+      cancionFiltrada = item;
+      console.log(cancionFiltrada);
+    });
 
-
-  verDetalle(id: number) {
-    this.cancion = this.canciones.find(cancion => cancion.id === id);
-    let id_cancion = this.cancion?.id;
-    console.log("TEST" + id_cancion);
-
-    this.servicioDetalle.disparadorDetalle.emit(this.cancion);
+    this.servicioDetalle.disparadorDetalle.emit(cancionFiltrada);
   }
 
   reproducirCancion(id: number) {

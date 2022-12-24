@@ -46,6 +46,7 @@ export class TextFilterComponent implements OnInit {
 
   filtroEstilos(){
     this.resultadoFiltro = this.styleFilter.value;
+    console.log(this.resultadoBusqueda);
     this.filtrosServicio.disparadorFiltroEstilo.emit(this.resultadoFiltro.estilo);
   }
 
