@@ -127,12 +127,8 @@ export class CancionComponent implements OnInit {
 
   getCancion(id: string) {
 
-    console.log(this.afs.doc<any>('canciones/' + id).valueChanges())
-    console.log(this.afs.doc<any>("canciones/" + id));
-    const cancion = this.afs.doc<any>("canciones/" + id);
-    ;
+    //Creamos esta canción en blanco para que no dé como variable undefined.
     this.cancion = [
-
         {id: '',
         titulo: "",
         artista: "",
@@ -145,6 +141,10 @@ export class CancionComponent implements OnInit {
         duration:""}
     ]
 
+    //seleccionamos de la base de datos la canción con el ID que recibimos por parámetro
+    const cancion = this.afs.doc<any>("canciones/" + id);
+    
+    //Seleccionamos los datos de Firebase y los convertimos a objeto Canción
     cancion.valueChanges().subscribe(res => {
 
       this.cancion.album = res.Album;
@@ -155,8 +155,9 @@ export class CancionComponent implements OnInit {
       this.cancion.description = res.Descripcion;
       this.cancion.img = res.img;
 
+      //Enviamos esta canción al Detalle mediante el servicio
       this.servicioDetalle.disparadorDetalle.emit(this.cancion);
-      
+
     })
 
   }
