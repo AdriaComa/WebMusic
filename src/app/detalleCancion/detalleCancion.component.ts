@@ -49,8 +49,9 @@ export class detalleCancionComponent {
     ngOnInit() {
 
       this.servicioDetalle.disparadorDetalle.subscribe(data => {
-        console.log(data)
-        // this.cancion = data;
+        console.log("HOLI");
+        console.log(data);
+        this.cancion = data;
         // console.log(this.cancion, "asdasd");
       })
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { Component, OnInit,} from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 
 import { CancionesService, Cancion } from '../servicios/canciones.service';
 import { ServicioVerDetalleService } from "../servicio-ver-detalle.service";
@@ -31,7 +31,8 @@ export class CancionComponent implements OnInit {
 
 
   canciones: Cancion[] = [];
-  cancion: Cancion | undefined;
+  cancion: Cancion | any;
+
   value = 'filtroCanciones';
 
 
@@ -42,7 +43,7 @@ export class CancionComponent implements OnInit {
 
 
 
-  filtroCanciones: string ='';
+  filtroCanciones: string = '';
 
   constructor(firestore: AngularFirestore,
     private afs: AngularFirestore,
@@ -62,7 +63,7 @@ export class CancionComponent implements OnInit {
 
   }
 
- borrarCancion(cancion_id: string) {
+  borrarCancion(cancion_id: string) {
     console.log("BORRAR: ", cancion_id)
     const db = this.afs.firestore
     var jobskill_query = db.collection('canciones').where('id', '==', cancion_id);
@@ -123,21 +124,46 @@ export class CancionComponent implements OnInit {
   }
 
 
-  verDetalle(id: string) {
-    //this.cancion = this.canciones.find(cancion => cancion.id === id);
-    const db = this.afs.collection<any>('canciones', ref => ref.where('id', '==', id).limit(1));
-    var cancionesQuery = db.valueChanges();
-    var cancionFiltrada;
 
-    cancionesQuery.forEach(item => {
-      cancionFiltrada = item;
-      console.log(cancionFiltrada);
-    });
+  getCancion(id: string) {
 
-    this.servicioDetalle.disparadorDetalle.emit(cancionFiltrada);
+    console.log(this.afs.doc<any>('canciones/' + id).valueChanges())
+    console.log(this.afs.doc<any>("canciones/" + id));
+    const cancion = this.afs.doc<any>("canciones/" + id);
+    ;
+    this.cancion = [
+
+        {id: '',
+        titulo: "",
+        artista: "",
+        img: "",
+        estilo:"",
+        fecha: "",
+        album: "",
+        url: "",
+        description:"",
+        duration:""}
+    ]
+
+    cancion.valueChanges().subscribe(res => {
+
+      this.cancion.album = res.Album;
+      this.cancion.artista = res.Artista;
+      this.cancion.estilo = res.Estilo;
+      this.cancion.titulo = res.Titulo;
+      this.cancion.fecha = res.Fecha;
+      this.cancion.description = res.Descripcion;
+      this.cancion.img = res.img;
+
+      this.servicioDetalle.disparadorDetalle.emit(this.cancion);
+      
+    })
+
   }
 
-  reproducirCancion(id: number) {
+
+
+  reproducirCancion(id: string) {
     this.cancion = this.canciones.find(cancion => cancion.id === id);
     this.servicioReproducirCancion.reproducirCancionTrigger.emit(this.cancion);
   }

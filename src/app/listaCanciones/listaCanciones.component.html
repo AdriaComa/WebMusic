@@ -1,12 +1,12 @@
 
 <mat-nav-list class="text-left">
   <mat-label>Busca tu canción o artista favorito:</mat-label>
-  <input matInput type="text" class="form-control" name="filtroCanciones" placeholder="..."
+  <input matInput type="text" class="form-control" name="filtroCanciones" placeholder="Realiza tu búsqueda..."
     [(ngModel)]="filtroCanciones">
   <button *ngIf="filtroCanciones" matSuffix mat-icon-button aria-label="Clear" (click)="filtroCanciones=''">
     <mat-icon>close</mat-icon>
   </button>
-  <mat-list-item *ngFor=" let item of items | async | filtro:filtroCanciones">
+  <mat-list-item (click)='getCancion(item.id)' *ngFor=" let item of items | async | filtro:filtroCanciones">
     <div matLine style="margin-left:70px"><img matLine [src]="item.img"
         style=" border: 2px solid #39ABA2; border-radius: 50%;" alt="" width="70px" height="70px"></div>
     <div matLine style="margin-left:70px" id="title">{{item.Titulo}}</div>
