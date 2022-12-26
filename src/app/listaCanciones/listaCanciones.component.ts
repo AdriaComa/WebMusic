@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
+
+import { Component, OnInit,} from '@angular/core';
+
 import { CancionesService, Cancion } from '../servicios/canciones.service';
 import { ServicioVerDetalleService } from "../servicio-ver-detalle.service";
 import { ServicioReproducirCancion } from '../servicios/servicio-reproducir-cancion.service';
@@ -9,6 +12,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Pipe, PipeTransform } from "@angular/core";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { Inject, Injectable } from '@angular/core';
+
 
 
 
@@ -23,29 +28,39 @@ import { Observable } from 'rxjs';
 
 export class CancionComponent implements OnInit {
 
+
+
   canciones: Cancion[] = [];
   cancion: Cancion | undefined;
   value = 'filtroCanciones';
 
 
-  private itemsCollection: AngularFirestoreCollection<any>;
-  public items: Observable<any[]>;
 
-  filtroCanciones = '';
+
+  private itemsCollection: AngularFirestoreCollection<any>;
+  public items: Observable<any>;
+
+
+
+  filtroCanciones: string ='';
 
   constructor(firestore: AngularFirestore,
     private afs: AngularFirestore,
     private _cancionesService: CancionesService,
     private filtrosServicio: FiltrosServicioService,
     private servicioDetalle: ServicioVerDetalleService,
-    private servicioReproducirCancion: ServicioReproducirCancion) {
+    private servicioReproducirCancion: ServicioReproducirCancion,) {
     this.itemsCollection = afs.collection<any>('canciones');
     this.items = this.itemsCollection.valueChanges({ idField: 'customID' });
+
+
+
+
+
     //this.items = firestore.collection('canciones').valueChanges();
 
 
   }
-
 
  borrarCancion(cancion_id: string) {
     console.log("BORRAR: ", cancion_id)
@@ -57,6 +72,7 @@ export class CancionComponent implements OnInit {
       });
     });
   }
+
 
 
   ngOnInit() {
