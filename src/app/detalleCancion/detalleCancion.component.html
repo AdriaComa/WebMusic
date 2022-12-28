@@ -8,6 +8,8 @@
   </mat-card-header>
   <img mat-card-image class="img" [src]="cancion.img" style="border: 5px solid #39ABA2; border-radius: 50%;" srcset="" alt="Foto">
   <mat-card-content>
+    <input matInput hidden="true" placeholder=" " [(ngModel)]="id_song" value=" {{ cancion.id }} ">
+
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Artista</mat-label>
@@ -50,7 +52,7 @@
         <mat-icon matSuffix>border_color</mat-icon>
       </mat-form-field>
     </p>
-    <button mat-raised-button (click)="updateCancion(albums,artist,title)"
+    <button mat-raised-button (click)="updateCancion(cancion.id,cancion.album, cancion.artista, cancion.titulo)"
         style="border: 2px solid #39ABA2 !important; border-radius: 5% !important;margin-right: 3%;  color: #39ABA2;"
         ><span>Actualizar </span></button>
   </mat-card-content>

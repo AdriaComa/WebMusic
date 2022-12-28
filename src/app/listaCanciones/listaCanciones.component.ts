@@ -147,6 +147,7 @@ export class CancionComponent implements OnInit {
     //Seleccionamos los datos de Firebase y los convertimos a objeto Canción
     cancion.valueChanges().subscribe(res => {
 
+      this.cancion.id = res.id;
       this.cancion.album = res.Album;
       this.cancion.artista = res.Artista;
       this.cancion.estilo = res.Estilo;
@@ -158,7 +159,7 @@ export class CancionComponent implements OnInit {
       //Enviamos esta canción al Detalle mediante el servicio
       this.servicioDetalle.disparadorDetalle.emit(this.cancion);
 
-    })
+    });
 
   }
 
