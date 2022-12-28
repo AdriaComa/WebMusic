@@ -1,7 +1,7 @@
 
 
 
-<mat-card class="example-card" *ngIf="cancion">
+<mat-card class="example-card" *ngIf=" cancion">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>Detalles de la canción</mat-card-title>
@@ -11,43 +11,47 @@
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Artista</mat-label>
-        <input matInput placeholder="" value="{{ cancion.artista }}" readonly="">
+        <input matInput placeholder=" " [(ngModel)]="artist" value=" {{ cancion.artista }} ">
         <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Canción</mat-label>
-        <input matInput placeholder="" value="{{ cancion.titulo }}" readonly="">
+        <input matInput placeholder=" " value="{{ cancion.titulo }}">
         <mat-icon matSuffix>book</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Álbum</mat-label>
-        <input matInput placeholder="" value="{{ cancion.album }}" readonly="">
+        <input matInput placeholder="" value="{{ cancion.album }}" >
         <mat-icon matSuffix>album</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Estilo</mat-label>
-        <input matInput placeholder="" value="{{ cancion.estilo }}" readonly="">
+        <input matInput placeholder=" " value="{{ cancion.estilo }}">
         <mat-icon matSuffix>mic</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Fecha</mat-label>
-        <input matInput placeholder="" value="{{ cancion.fecha }}" readonly="">
+        <input matInput placeholder=" " value="{{ cancion.fecha }}" >
         <mat-icon matSuffix>today</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>Descripción</mat-label>
-        <textarea matInput readonly="">{{ cancion.description }}</textarea>
+        <textarea matInput >{{ cancion.description }}</textarea>
+        <mat-icon matSuffix>border_color</mat-icon>
       </mat-form-field>
     </p>
+    <button mat-raised-button (click)="updateCancion(albums,artist,title)"
+        style="border: 2px solid #39ABA2 !important; border-radius: 5% !important;margin-right: 3%;  color: #39ABA2;"
+        ><span>Actualizar </span></button>
   </mat-card-content>
 </mat-card>

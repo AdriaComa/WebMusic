@@ -1,7 +1,7 @@
 
 <mat-nav-list class="text-left">
-  <mat-label>Busca tu canción o artista favorito:</mat-label>
-  <input matInput type="text" class="form-control" name="filtroCanciones" placeholder="Realiza tu búsqueda..."
+  <mat-label  style="padding:2%">Busca tu canción o artista favorito:</mat-label>
+  <input matInput type="text" style="padding:2% width" class="form-control" name="filtroCanciones" placeholder="Realiza tu búsqueda..."
     [(ngModel)]="filtroCanciones">
   <button *ngIf="filtroCanciones" matSuffix mat-icon-button aria-label="Clear" (click)="filtroCanciones=''">
     <mat-icon>close</mat-icon>

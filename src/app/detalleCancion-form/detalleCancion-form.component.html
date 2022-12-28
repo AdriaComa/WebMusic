@@ -33,11 +33,19 @@
   </p>
 
   <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Descripción</mat-label>
+      <input formControlName="description" matInput placeholder="" value="">
+      <mat-icon matSuffix>border_color</mat-icon>
+    </mat-form-field>
+  </p>
+
+  <p>
     <mat-label>Estilo:</mat-label><br><br>
     <mat-radio-group formControlName="estilo" aria-label="Select an option">
-      <mat-radio-button value="1">Pop</mat-radio-button><br>
-      <mat-radio-button value="2">Electrónica</mat-radio-button><br>
-      <mat-radio-button value="3">Alternativa</mat-radio-button><br>
+      <mat-radio-button value="Pop">Pop</mat-radio-button><br>
+      <mat-radio-button value="Electrónica">Electrónica</mat-radio-button><br>
+      <mat-radio-button value="Alternativa">Alternativa</mat-radio-button><br>
     </mat-radio-group>
 
   </p>

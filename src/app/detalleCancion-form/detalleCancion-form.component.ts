@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 export class DetalleCancionFormComponent implements OnInit {
 
   form: FormGroup = null!;
-  
+
   private itemsCollection: AngularFirestoreCollection<any>;
   public items: Observable<any[]>;
 
@@ -40,6 +40,7 @@ export class DetalleCancionFormComponent implements OnInit {
       album: new FormControl(' ', [Validators.required]),
       fecha: new FormControl(' ', [Validators.required]),
       estilo: new FormControl(' ', [Validators.required]),
+      description: new FormControl(' ', [Validators.required]),
     });
   }
 
@@ -48,7 +49,7 @@ export class DetalleCancionFormComponent implements OnInit {
     if(this.form.valid){
       const cancionForm = this.form.value;
       console.log(cancionForm);
-      this.crearCancion(cancionForm.titulo , cancionForm.album , cancionForm.artista, cancionForm.fecha, cancionForm.estilo,  'imgurl', 'mp33333');
+      this.crearCancion(cancionForm.titulo , cancionForm.album , cancionForm.artista, cancionForm.fecha, cancionForm.estilo ,cancionForm.description,  'imgurl', 'mp33333');
       this.form.reset()
       this.form.clearAsyncValidators();
     }
@@ -60,12 +61,13 @@ export class DetalleCancionFormComponent implements OnInit {
     Artista: string,
     Fecha: string,
     Estilo: string,
+    Descripcion: string,
     img: string,
     url: string,
   ) {
     // Persist a document id
     const id = this.afs.createId();
-    const cancion: any = { id, Titulo, Album, Artista, Fecha, Estilo, img, url };
+    const cancion: any = { id, Titulo, Album, Artista, Fecha, Estilo, Descripcion , img, url };
     this.itemsCollection.doc(id).set(cancion);
   }
 
