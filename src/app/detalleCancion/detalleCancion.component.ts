@@ -93,7 +93,6 @@ export class detalleCancionComponent {
       Artista: this?.artist,
       Album: this?.albums,
       Titulo: this?.title,
-
     });
 
 
