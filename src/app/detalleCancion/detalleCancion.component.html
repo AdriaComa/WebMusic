@@ -13,35 +13,35 @@
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Artista</mat-label>
-        <input matInput placeholder=" " [(ngModel)]="artist" value=" {{ cancion.artista }} ">
+        <input matInput placeholder=" {{cancion.artista}} " [(ngModel)]="artist" value=" {{ cancion.artista }} ">
         <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Canción</mat-label>
-        <input matInput placeholder=" " value="{{ cancion.titulo }}">
+        <input matInput placeholder=" {{cancion.titulo}} " [(ngModel)]="title" value=" {{ cancion.titulo }} ">
         <mat-icon matSuffix>book</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Álbum</mat-label>
-        <input matInput placeholder="" value="{{ cancion.album }}" >
+        <input matInput placeholder=" {{cancion.album}} " value="{{ cancion.album }}" [(ngModel)]="albums" >
         <mat-icon matSuffix>album</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Estilo</mat-label>
-        <input matInput placeholder=" " value="{{ cancion.estilo }}">
+        <input matInput  value="{{ cancion.estilo }}">
         <mat-icon matSuffix>mic</mat-icon>
       </mat-form-field>
     </p>
     <p >
       <mat-form-field appearance="fill">
         <mat-label>Fecha</mat-label>
-        <input matInput placeholder=" " value="{{ cancion.fecha }}" >
+        <input matInput  value="{{ cancion.fecha }}" >
         <mat-icon matSuffix>today</mat-icon>
       </mat-form-field>
     </p>
@@ -52,7 +52,7 @@
         <mat-icon matSuffix>border_color</mat-icon>
       </mat-form-field>
     </p>
-    <button mat-raised-button (click)="updateCancion(cancion.id,cancion.album, cancion.artista, cancion.titulo)"
+    <button mat-raised-button (click)="updateCancion(cancion.id)"
         style="border: 2px solid #39ABA2 !important; border-radius: 5% !important;margin-right: 3%;  color: #39ABA2;"
         ><span>Actualizar </span></button>
   </mat-card-content>

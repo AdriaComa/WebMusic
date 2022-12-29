@@ -27,7 +27,7 @@ export class detalleCancionComponent {
 
 
   artist: any;
-  title: any;
+  title: string | undefined;
   albums: any;
   style: string | undefined;
   date: string | undefined;
@@ -48,7 +48,7 @@ export class detalleCancionComponent {
     private _cancionesService: CancionesService,
     private router: Router,
     private servicioDetalle: ServicioVerDetalleService,
-    private afs: AngularFirestore,
+    private afs: AngularFirestore
 
 
 
@@ -78,20 +78,37 @@ export class detalleCancionComponent {
 
   }
 
-  updateCancion(id: string, album: string, artist: string, title: string) {
+  updateCancion(id: string) {
 
     //seleccionamos de la base de datos la canción con el ID que recibimos por parámetro
-    const cancion = this.afs.doc<any>("canciones/" + id);
+    let cancion = this.afs.doc<any>("canciones/" + id);
+    console.log(this.artist,"dsjfsjlfsoi")
+    console.log("ID del documento:", id);
+    console.log("Datos enviados a la función:", );
+
+
+    console.log(cancion)
+
+    this.afs.doc('canciones/' + id).update({
+      Artista: this?.artist,
+      Album: this?.albums,
+      Titulo: this?.title,
+
+    });
+
+
+
+    //console.log("Datos enviados a la función:", album, artist, title);
+
 
     //Seleccionamos los datos de Firebase y los convertimos a objeto Canción
     cancion.valueChanges().subscribe(res => {
 
+
       //EN ESTE CONSOLE LOG LA IDEA ES QUE APAREZCAN LAS DOS, el artista inicial y luego el nombre modificado en el formulario
       //(Se supone que lo pasa por parámetro al hacer click, pero me está mostrando lo mismo). Una vez consiga tener esa diferencia,
       //será hacer un update de la "cancion" con los datos del formulario.
-      console.log("Artista: ", res.Artista, artist);
-
-
+      console.log("Artista:erderrerererererer ", res.Artista, this.artist);
     });
 
 
