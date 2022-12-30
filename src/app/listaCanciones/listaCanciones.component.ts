@@ -13,10 +13,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
-
-
-
-
+// import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 
 
 @Component({
@@ -29,7 +26,6 @@ import { Inject, Injectable } from '@angular/core';
 export class CancionComponent implements OnInit {
 
 
-
   canciones: Cancion[] = [];
   cancion: Cancion | any;
 
@@ -37,11 +33,8 @@ export class CancionComponent implements OnInit {
 
 
 
-
   private itemsCollection: AngularFirestoreCollection<any>;
   public items: Observable<any>;
-
-
 
   filtroCanciones: string = '';
 
@@ -53,14 +46,6 @@ export class CancionComponent implements OnInit {
     private servicioReproducirCancion: ServicioReproducirCancion,) {
     this.itemsCollection = afs.collection<any>('canciones');
     this.items = this.itemsCollection.valueChanges({ idField: 'customID' });
-
-
-
-
-
-    //this.items = firestore.collection('canciones').valueChanges();
-
-
   }
 
   borrarCancion(cancion_id: string) {
@@ -129,21 +114,23 @@ export class CancionComponent implements OnInit {
 
     //Creamos esta canción en blanco para que no dé como variable undefined.
     this.cancion = [
-        {id: '',
+      {
+        id: '',
         titulo: "",
         artista: "",
         img: "",
-        estilo:"",
+        estilo: "",
         fecha: "",
         album: "",
         url: "",
-        description:"",
-        duration:""}
+        description: "",
+        duration: ""
+      }
     ]
 
     //seleccionamos de la base de datos la canción con el ID que recibimos por parámetro
     const cancion = this.afs.doc<any>("canciones/" + id);
-    
+
     //Seleccionamos los datos de Firebase y los convertimos a objeto Canción
     cancion.valueChanges().subscribe(res => {
 

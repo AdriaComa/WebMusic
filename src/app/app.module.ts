@@ -25,13 +25,13 @@ import { FiltroCancionesPipe } from './pipe/filtro.pipe';
 import { CommonModule } from '@angular/common';
 import {FormControl, Validators} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
-
-import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
-
-
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 
 //Servicios
@@ -45,8 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DetalleCancionFormComponent } from './detalleCancion-form/detalleCancion-form.component';
 import { DataServices } from './data.services';
 import { HttpClientModule } from '@angular/common/http';
-import { initializeApp } from 'firebase/app';
 import { environment } from '../environments/environment';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -64,6 +64,9 @@ import { environment } from '../environments/environment';
 
   ],
   imports: [
+    AngularFireModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
@@ -84,6 +87,8 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     APP_ROUTING

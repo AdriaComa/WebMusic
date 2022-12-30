@@ -1,7 +1,28 @@
 
 
+
 <form class="form" [formGroup]="form" (ngSubmit)="save($event)">
   <h2>Añade tu canción:</h2>
+
+
+  <img [src]="imgURL" alt="" height="150px" class="mb-4" style="border-radius: 10px;">
+  
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Portada del álbum</mat-label>
+      <input type="file" (change)="uploadImage($event)" style="padding:2% width" class="mt-3 form-control">
+      <input  matInput placeholder="" [value]="imgURL" readonly="true">
+      <mat-icon matSuffix>image</mat-icon>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Archivo MP3</mat-label>
+      <input type="file" (change)="uploadMP3($event)" style="padding:2% width" class="mt-3 form-control">
+      <input  matInput placeholder="" [value]="mp3URL" readonly="true">
+      <mat-icon matSuffix>speaker</mat-icon>
+    </mat-form-field>
+  </p>
   <p>
     <mat-form-field appearance="fill">
       <mat-label>Artista</mat-label>
@@ -50,6 +71,9 @@
 
   </p>
 
+
+
   <button mat-button type="submit" [disabled]="form.invalid">Guardar</button>
 </form>
+
 
