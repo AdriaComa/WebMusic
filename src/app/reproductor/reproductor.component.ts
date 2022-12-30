@@ -51,6 +51,7 @@ export class ReproductorComponent implements OnInit {
 
   playSong() {
     this.player.src = this.cancion?.url as string;
+    
     if(this.audio){
       this.audio.play();
       this.interval = setInterval(function () {

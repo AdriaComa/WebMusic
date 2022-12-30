@@ -95,7 +95,6 @@ export class DetalleCancionFormComponent implements OnInit {
     const arrayURL = <any>[];
 
     listAll(listRef).then(async response => {
-
       for (let item of response.items) {
         const url = await getDownloadURL(item);
         arrayURL.push(url);
@@ -106,8 +105,6 @@ export class DetalleCancionFormComponent implements OnInit {
       this.mp3URL = filteredArray[0];
 
     }).catch(error => console.log(error));
-
-
 
   }
 

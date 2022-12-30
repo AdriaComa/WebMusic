@@ -153,8 +153,35 @@ export class CancionComponent implements OnInit {
 
 
   reproducirCancion(id: string) {
-    this.cancion = this.canciones.find(cancion => cancion.id === id);
-    this.servicioReproducirCancion.reproducirCancionTrigger.emit(this.cancion);
+
+    console.log("ID: ", id)
+    //Creamos esta canción en blanco para que no dé como variable undefined.
+    this.cancion = [
+      {
+        id: id,
+        titulo: "",
+        artista: "",
+        img: "",
+        estilo: "",
+        fecha: "",
+        album: "",
+        url: "",
+        description: "",
+        duration: ""
+      }
+    ]
+
+    const cancion = this.afs.doc<any>("canciones/" + id);
+    console.log("Cancion reproductirC(): ", cancion)
+
+    cancion.valueChanges().subscribe(res => {
+      this.cancion.url = res.url;
+      console.log(this.cancion.url, "<- URL de Cancion ")
+      console.log(this.cancion, "<--CANCION antes del emit")
+      this.servicioReproducirCancion.reproducirCancionTrigger.emit(this.cancion);
+
+    });
+
   }
 
 }
