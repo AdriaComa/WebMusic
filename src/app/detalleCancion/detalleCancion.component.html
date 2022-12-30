@@ -1,60 +1,65 @@
-
-
-
 <mat-card class="example-card" *ngIf=" cancion">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>Detalles de la canción</mat-card-title>
   </mat-card-header>
-  <img mat-card-image class="img" [src]="cancion.img" style="border: 5px solid #39ABA2; border-radius: 50%;" srcset="" alt="Foto">
+  <img mat-card-image class="img" [src]="cancion.img" style="border: 5px solid #39ABA2; border-radius: 50%;" srcset=""
+    alt="Foto">
   <mat-card-content>
-    <input matInput hidden="true" placeholder=" " [(ngModel)]="id_song" value=" {{ cancion.id }} ">
 
-    <p >
+  <form class="form" [formGroup]="form" (ngSubmit)="updateCancion(cancion.id)">
+
+    <input matInput hidden="true"  value=" {{ cancion.id }} ">
+
+    <p>
       <mat-form-field appearance="fill">
         <mat-label>Artista</mat-label>
-        <input matInput placeholder=" {{cancion.artista}} " [(ngModel)]="artist" value=" {{ cancion.artista }} ">
+        <input matInput formControlName="artista" placeholder="" value="{{ cancion.artista }} ">
         <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
     </p>
-    <p >
+    <p>
       <mat-form-field appearance="fill">
         <mat-label>Canción</mat-label>
-        <input matInput placeholder=" {{cancion.titulo}} " [(ngModel)]="title" value=" {{ cancion.titulo }} ">
+        <input matInput formControlName="titulo" placeholder="" value="{{ cancion.titulo }} ">
         <mat-icon matSuffix>book</mat-icon>
       </mat-form-field>
     </p>
-    <p >
+    <p>
       <mat-form-field appearance="fill">
         <mat-label>Álbum</mat-label>
-        <input matInput placeholder=" {{cancion.album}} " value="{{ cancion.album }}" [(ngModel)]="albums" >
+        <input matInput formControlName="album"  placeholder="" value="{{cancion.album }}" >
         <mat-icon matSuffix>album</mat-icon>
       </mat-form-field>
 
     </p>
-    <p >
+    <p>
       <mat-form-field appearance="fill">
         <mat-label>Estilo</mat-label>
-        <input matInput  value="{{ cancion.estilo }}">
+        <input matInput formControlName="estilo" placeholder="" value="{{ cancion.estilo }}">
         <mat-icon matSuffix>mic</mat-icon>
       </mat-form-field>
     </p>
-    <p >
+    <p>
       <mat-form-field appearance="fill">
         <mat-label>Fecha</mat-label>
-        <input matInput  value="{{ cancion.fecha }}" >
+        <input matInput formControlName="fecha"placeholder="" value="{{cancion.fecha}}">
         <mat-icon matSuffix>today</mat-icon>
       </mat-form-field>
     </p>
-    <p >
+    <p>
       <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>Descripción</mat-label>
-        <textarea matInput >{{ cancion.description }}</textarea>
+        <textarea matInput>{{ cancion.description }}</textarea>
         <mat-icon matSuffix>border_color</mat-icon>
       </mat-form-field>
     </p>
-    <button mat-raised-button (click)="updateCancion(cancion.id)"
-        style="border: 2px solid #39ABA2 !important; border-radius: 5% !important;margin-right: 3%;  color: #39ABA2;"
-        ><span>Actualizar </span></button>
+
+    <button mat-button type="submit" [disabled]="form.invalid">Guardar</button>
+
+    <!-- <button mat-raised-button (click)="updateCancion(cancion.id)"
+      style="border: 2px solid #39ABA2 !important; border-radius: 5% !important;margin-right: 3%;  color: #39ABA2;"><span>Actualizar
+      </span></button> -->
+  </form>
   </mat-card-content>
 </mat-card>

@@ -6,13 +6,8 @@ import { CancionesService, Cancion } from '../servicios/canciones.service';
 import { ServicioVerDetalleService } from "../servicio-ver-detalle.service";
 import { ServicioReproducirCancion } from '../servicios/servicio-reproducir-cancion.service';
 import { FiltrosServicioService } from '../filtros-servicio.service';
-import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Pipe, PipeTransform } from "@angular/core";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
-import { Inject, Injectable } from '@angular/core';
 // import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 
 

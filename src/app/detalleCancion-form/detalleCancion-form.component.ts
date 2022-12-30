@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators, Form } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators'
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage'
-import { list } from 'firebase/storage';
 
 @Component({
   selector: 'app-detalleCancion-form',
